@@ -3,7 +3,6 @@ import { RouterLink } from "vue-router";
 import { reactive, defineProps, onMounted } from "vue";
 import axios from "axios";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
-
 import JobListing from "./JobListing.vue";
 
 const props = defineProps({
@@ -21,7 +20,7 @@ const state = reactive({
 
 onMounted(async () => {
   try {
-    const response = await axios.get("http://localhost:5000/jobs");
+    const response = await axios.get("/api/jobs");
     state.jobs = response.data;
   } catch (error) {
     console.error("Error Fetching Data!", error);
