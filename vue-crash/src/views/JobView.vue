@@ -11,17 +11,20 @@ const router = useRouter();
 const toast = useToast();
 
 const jobId = route.params.id;
+
 const state = reactive({
   job: {},
   isLoading: true,
 });
 
+// Delete the job
 const deleteJob = async () => {
   try {
     const confirm = window.confirm("Are you sure you want to delete this job?");
     if (confirm) {
       await axios.delete(`/api/jobs/${jobId}`);
       toast.success("Job Deleted Successfully!");
+      // Redirect to the Jobs page
       router.push("/jobs");
     }
   } catch (error) {
@@ -30,6 +33,7 @@ const deleteJob = async () => {
   }
 };
 
+// Data Fetching from the backend API
 onMounted(async () => {
   try {
     const response = await axios.get(`/api/jobs/${jobId}`);

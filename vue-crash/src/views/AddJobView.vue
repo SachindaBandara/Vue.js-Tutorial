@@ -38,6 +38,7 @@ const handleSubmit = async () => {
     const response = await axios.post("/api/jobs", newJob);
     //notification
     toast.success("job Added Successfully!");
+    //Redirect to the created new job
     router.push(`/jobs/${response.data.id}`);
   } catch (error) {
     toast.success("Can't Add the Job!");
